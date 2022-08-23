@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :offers
 
+  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, length: { minimum: 3 }, allow_blank: false
+
+  validates :user_type, presence: true, inclusion: { in: %w[customer owner] }
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
