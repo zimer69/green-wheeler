@@ -7,4 +7,5 @@ class Booking < ApplicationRecord
   validates :end_date, presence: true
   validates :description, uniqueness: { scope: :title,
     message: "There is already an offer with this tittle and description." }
+    # delete this comment
 end
