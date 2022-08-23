@@ -4,8 +4,7 @@ class User < ApplicationRecord
   has_many :offers
 
   validates :first_name, :last_name, presence: true
-  validates :user_type
-
+  validates :user_type, presence: true
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
