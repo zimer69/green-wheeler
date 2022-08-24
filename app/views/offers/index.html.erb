@@ -2,7 +2,7 @@
   <% @offers.each do |offer| %>
     <div class="col-sm col-md-4 my-3">
       <%= link_to offer_path(offer), class: "text-decoration-none" do %>
-        <%= render 'shared/card' %>
+        <%= render 'shared/card', offer: offer %>
       <% end %>
     </div>
   <% end %>
