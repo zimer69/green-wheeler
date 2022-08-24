@@ -1,0 +1,53 @@
+.card-offer {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position:relative
+}
+
+.card-offer > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-offer .card-offer-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-offer {
+  h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  }
+  h1 {
+    font-size: 21px;
+  }
+}
+
+.card-offer p {
+  font-size: 15px;
+  opacity: .7;
+  margin: 0;
+}
+
+#per-day{
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+#category{
+  position:absolute;
+  top:15px;
+  right:15px;
+  font-size: 20px;
+}
+
+#offer-rating {
+  font-size: 16px;
+}
