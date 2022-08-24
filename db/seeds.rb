@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "[1/3] Clearing database..."
-Offer.destroy_all if Rails.env.development?
-User.destroy_all if Rails.env.development?
+Offer.destroy_all
+User.destroy_all
 
 puts "[2/3] Generating seed..."
 4.times do

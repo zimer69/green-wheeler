@@ -1,11 +1,13 @@
-<div class="row mt-3">
-  <% @offers.each do |offer| %>
-    <% if offer.user_id == current_user.id %>
-      <div class="col-sm col-md-4 my-3">
-        <%= link_to offer_path(offer), class: "text-decoration-none" do %>
-          <%= render 'shared/card', offer: offer %>
-        <% end %>
-      </div>
+<div class="containter p-5">
+  <div class="row mt-3">
+    <% @offers.each do |offer| %>
+      <% if offer.user_id == current_user.id %>
+        <div class="col-sm col-md-4 my-3">
+          <%= link_to offer_path(offer), class: "text-decoration-none" do %>
+            <%= render 'shared/card', offer: offer %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
