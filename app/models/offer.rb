@@ -7,7 +7,7 @@ class Offer < ApplicationRecord
 
   validates :price_in_cents, numericality: { only_integer: true }
 
-  validates :rating, length: { in: 0..5 }
+  # validates :rating, length: { in: 0..5 }
 
   validates :description, length: { in: 10..300 }, allow_blank: false
 
