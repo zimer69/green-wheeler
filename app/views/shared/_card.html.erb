@@ -4,7 +4,7 @@
     <div>
       <h1><%= offer.title[0..17] %>...</h2>
       <%  %>
-      <p class="my-3"><%= offer.description[0..100] %>...</p>
+      <p class="my-3"><%= offer.description[0..80] %>...</p>
       <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
       <p class="feature my-1"><i class="fa-solid fa-lock"></i> Locker ✓</p>
       <h2 class="card-offer-pricing mt-3">$<%= offer.price_in_cents / 1000 %><span id="per-day">/day</span></h2>
