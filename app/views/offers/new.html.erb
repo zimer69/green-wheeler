@@ -3,9 +3,8 @@
   <%= f.input :category %>
   <%= f.input :description %>
   <%= f.input :price_in_cents %>
-
   <%= f.input :electric %>
   <%= f.input :safety_equipment %>
-  <%= f.association :optional, :collection => %w[None, Padlock, Backseat], required: true %>
+  <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
   <%= f.submit %>
 <% end %>
