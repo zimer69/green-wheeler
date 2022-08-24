@@ -26,7 +26,7 @@ puts "[2/3] Generating seed..."
       price_in_cents: Faker::Number.number(digits: 5),
       user_id: user.id,
       rating: rand(0..5),
-      title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship,
+      title: Faker::Quote.yoda[0..29],
       description: Faker::Lorem.sentence(word_count: 15),
       electric: [true, false].sample,
       safety_equipment: [true, false].sample,
