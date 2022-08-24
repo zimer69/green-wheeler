@@ -3,16 +3,40 @@
   <div class="card-offer-infos">
     <div>
       <h1><%= offer.title[0..17] %>...</h2>
-      <%  %>
       <p class="my-3"><%= offer.description[0..80] %>...</p>
-      <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
-      <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i></i></i></i></i> Safety Eq. ✓</p>
-      <h2 class="card-offer-pricing mt-3">$<%= offer.price_in_cents / 1000 %><span id="per-day">/day</span></h2>
+
+      <%if offer.electric == true %>
+        <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
+      <% else %>
+        <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+      <% end %>
+
+      <% if offer.optional == 'Padlock' %>
+        <p class="feature my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+      <% elsif offer.optional == 'Backseat' %>
+        <p class="feature my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+      <% end %>
+
+      <% if offer.safety_equipment == true %>
+        <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+      <% end %>
     </div>
-    <div class="d-flex mt-3">
-      <i class="fa-solid fa-star"></i>
-      <h2 id="offer-rating" class="ms-1"><%= offer.rating %></h2>
-    </div>
-    <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
+
+
+    <%if offer.category == 'Bicycle'%>
+      <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
+    <% elsif offer.category == 'Skateboard' %>
+      <p id="category"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= offer.category %></p>
+    <% elsif offer.category == 'Scooter' %>
+      <p id="category"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= offer.category %></p>
+    <% else %>
+      <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
+    <% end %>
   </div>
+
+  <div class="card-footer">
+    <h2 class="card-offer-pricing">$<%= offer.price_in_cents / 1000 %><span id="per-day">/day</span></h2>
+    <h2 id="offer-rating"><%= offer.rating %><i class="fa-solid fa-star"></i></h2>
+  </div>
+
 </div>
