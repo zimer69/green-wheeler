@@ -20,16 +20,8 @@
       <% if offer.safety_equipment == true %>
         <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
       <% end %>
-
-
-
-
-      <h2 class="card-offer-pricing mt-3">$<%= offer.price_in_cents / 1000 %><span id="per-day">/day</span></h2>
     </div>
-    <div class="d-flex mt-3">
-      <i class="fa-solid fa-star"></i>
-      <h2 id="offer-rating" class="ms-1"><%= offer.rating %></h2>
-    </div>
+
 
     <%if offer.category == 'Bicycle'%>
       <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
@@ -41,4 +33,10 @@
       <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
     <% end %>
   </div>
+
+  <div class="card-footer">
+    <h2 class="card-offer-pricing">$<%= offer.price_in_cents / 1000 %><span id="per-day">/day</span></h2>
+    <h2 id="offer-rating"><%= offer.rating %><i class="fa-solid fa-star"></i></h2>
+  </div>
+
 </div>

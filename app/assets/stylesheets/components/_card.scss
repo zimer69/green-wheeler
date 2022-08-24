@@ -65,3 +65,12 @@
 #offer-rating {
   font-size: 16px;
 }
+
+.card-footer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  padding: 8px 15px 2px 10px;
+}
