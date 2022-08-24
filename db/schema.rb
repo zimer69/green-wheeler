@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_23_163038) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_23_232248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,8 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_23_163038) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "description"
-    t.boolean "electric"
-    t.boolean "safety_equipment"
+    t.boolean "electric", default: false
+    t.boolean "safety_equipment", default: false
     t.string "optional"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_23_163038) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.float "rating"
     t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
