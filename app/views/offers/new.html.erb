@@ -3,7 +3,7 @@
     <%= f.input :title %>
     <%= f.input :category, :collection => %w[Bicycle Skateboard Scooter Rollerblades], required: true %>
     <%= f.input :description %>
-    <%= f.input :price_in_cents %>
+    <%= f.input :price %>
     <%=f.input :electric, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
     <%=f.input :safety_equipment, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
     <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
