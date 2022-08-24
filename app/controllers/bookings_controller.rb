@@ -1,12 +1,13 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show edit update destroy]
+  before_action :set_booking_offer, only: %i[new create]
 
   def index
     @bookings = policy_scope(Booking)
   end
 
   def show
-    authorize @bookings
+    authorize @booking
   end
 
   def new
@@ -17,6 +18,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
+    @booking.offer = @offer
 
     authorize @booking
 
@@ -54,12 +56,16 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def set_booking_offer
+    @offer = Offer.find(params[:offer_id])
+  end
+
   def booking_params
     params.require(:booking).permit(
-      params[:start_date,
-             :end_date,
-             :user_id,
-             :offer_id]
+      :start_date,
+      :end_date,
+      :user_id,
+      :offer_id
     )
   end
 end
