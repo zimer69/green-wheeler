@@ -11,6 +11,10 @@ class OfferPolicy < ApplicationPolicy
     true
   end
 
+  def my_offers?
+    true
+  end
+
   def create?
     true
   end

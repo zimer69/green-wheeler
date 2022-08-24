@@ -10,7 +10,7 @@ class OffersController < ApplicationController
   end
 
   def my_offers
-    @offers = Offer.all 
+    @offers = policy_scope(Offer)
   end
 
   def new
