@@ -1,8 +1,21 @@
 .card-offer {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  position:relative
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: #5cb25b;
+  }
+
+  &:focus {
+    color: #5cb25b;
+  }
 }
 
 .card-offer > img {
@@ -21,9 +34,9 @@
 
 .card-offer {
   h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
   }
   h1 {
     font-size: 21px;
@@ -32,19 +45,19 @@
 
 .card-offer p {
   font-size: 15px;
-  opacity: .7;
+  opacity: 0.7;
   margin: 0;
 }
 
-#per-day{
+#per-day {
   font-size: 15px;
   font-weight: lighter;
 }
 
-#category{
-  position:absolute;
-  top:15px;
-  right:15px;
+#category {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   font-size: 20px;
 }
 
