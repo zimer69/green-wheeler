@@ -10,6 +10,11 @@ class OffersController < ApplicationController
     authorize @offer
   end
 
+  def my_offers
+    @offers = policy_scope(Offer)
+    authorize @offers
+  end
+
   def new
     @offer = Offer.new
     authorize @offer

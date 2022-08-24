@@ -3,10 +3,15 @@ class OfferPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
     def resolve
       scope.all
+      # a mesma coisa que Offer.all
     end
   end
 
   def show?
+    true
+  end
+
+  def my_offers?
     true
   end
 
