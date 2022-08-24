@@ -8,11 +8,17 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
+
+    <%= favicon_link_tag 'https://cdn-icons-png.flaticon.com/512/706/706170.png' %>
+
   </head>
 
   <body>
     <%= render "shared/navbar" %>
-    <%= yield %>
+    <main class="container">
+      <%= yield %>
+    </main>
     <%= render 'shared/flashes' %>
+    <%= render "shared/footer" %>
   </body>
 </html>

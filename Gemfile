@@ -33,6 +33,9 @@ gem "devise"
 # Pundit gem for authorization
 gem "pundit"
 
+# Faker gem for seed generation
+gem "faker"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
