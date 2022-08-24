@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <div class="logo-title">
-      <%= link_to offers_path, class: "navbar-brand" do %>
+      <%= link_to root_path, class: "navbar-brand" do %>
         <%= image_tag "https://cdn-icons-png.flaticon.com/512/706/706170.png" %>
       <% end %>
       <%= link_to "#", class: "nav-link" do %>
@@ -15,7 +15,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
@@ -29,6 +29,9 @@
             </div>
           </li>
         <% else %>
+        <li class="nav-item">
+          <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+        </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
