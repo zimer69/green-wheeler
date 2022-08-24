@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: "pages#home"
 
+  get "my_offers", to: "offers#my_offers"
+
   resources :offers do
     resources :bookings, only: %i[new create edit update destroy]
   end
