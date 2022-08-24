@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @offers = policy_scope(Offer)
