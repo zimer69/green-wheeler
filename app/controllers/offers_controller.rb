@@ -9,6 +9,10 @@ class OffersController < ApplicationController
     authorize @offer
   end
 
+  def my_offers
+    @offers = Offer.all 
+  end
+
   def new
     @offer = Offer.new
     authorize @offer
