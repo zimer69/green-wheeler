@@ -4,6 +4,13 @@ class OffersController < ApplicationController
 
   def index
     @offers = policy_scope(Offer)
+    @markers = @offers.geocoded.map do |offer|
+      {
+        lat: offer.latitude,
+        lng: offer.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {offer: offer})
+      }
+    end
   end
 
   def show
@@ -69,6 +76,7 @@ class OffersController < ApplicationController
                                   :description,
                                   :electric,
                                   :safety_equipment,
+                                  :address,
                                   :optional)
   end
 end

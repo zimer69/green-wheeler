@@ -36,6 +36,9 @@ gem "pundit"
 # Faker gem for seed generation
 gem "faker"
 
+# Geocoder gem for location features
+gem "geocoder"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
