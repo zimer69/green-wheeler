@@ -4,11 +4,11 @@ class Offer < ApplicationRecord
 
   belongs_to :user
 
-  validates :category, :title, :description, :price_in_cents, presence: true
+  validates :category, :title, :description, :price, presence: true
 
   validates :category, inclusion: { in: ['Bicycle', 'Skateboard', 'Scooter', 'Rollerblades'] }
 
-  validates :price_in_cents, numericality: { only_integer: true }
+  validates :price, numericality: { only_integer: true }
 
   # validates :rating, length: { in: 0..5 }
 
@@ -16,7 +16,7 @@ class Offer < ApplicationRecord
 
   validates :title, length: { in: 10..30 }, allow_blank: false
 
-  validates :price_in_cents, numericality: { greater_than_or_equal_to: 100 }, allow_blank: false
+  validates :price, numericality: { greater_than_or_equal_to: 1}, allow_blank: false
 
   validates :optional, inclusion: { in: ['None', 'Padlock', 'Backseat'] }
 

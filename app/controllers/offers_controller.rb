@@ -69,7 +69,7 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer).permit(:category,
-                                  :price_in_cents,
+                                  :price,
                                   :rating,
                                   :user_id,
                                   :title,
