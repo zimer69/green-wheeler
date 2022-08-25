@@ -15,7 +15,18 @@
   <% end %>
   <div class="card-offer-infos">
     <div>
-      <h1><%= offer.title[0..17] %>...</h2>
+      <div class="d-flex justify-content-between">
+        <h1><%= offer.title[0..17] %>...</h2>
+        <%if offer.category == 'Bicycle'%>
+          <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
+        <% elsif offer.category == 'Skateboard' %>
+          <p id="category"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= offer.category %></p>
+        <% elsif offer.category == 'Scooter' %>
+          <p id="category"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= offer.category %></p>
+        <% else %>
+          <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
+        <% end %>
+      </div>
       <p class="my-3"><%= offer.description[0..80] %>...</p>
       <%if offer.electric == true %>
         <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
@@ -33,17 +44,6 @@
         <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
       <% end %>
     </div>
-
-
-    <%if offer.category == 'Bicycle'%>
-      <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
-    <% elsif offer.category == 'Skateboard' %>
-      <p id="category"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= offer.category %></p>
-    <% elsif offer.category == 'Scooter' %>
-      <p id="category"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= offer.category %></p>
-    <% else %>
-      <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
-    <% end %>
   </div>
 
   <div class="card-footer">
