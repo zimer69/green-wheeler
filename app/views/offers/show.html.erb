@@ -52,14 +52,10 @@
 
       <p class='my-4'><%= @offer.description %></p>
 
-      <%= simple_form_for [@offer, @booking] do |f| %>
-        <%= f.input :start_date, input_html: { class: "datepicker" } %>
-        <%= f.input :end_date, input_html: { class: "datepicker" } %>
+      <%= simple_form_for [@offer, @booking], data: { controller: "flatpickr" } do |f| %>
+        <%= f.input :start_date, input_html: { data: { flatpickr_target: "firstRangeInput" } }, as: :string %>
+        <%= f.input :end_date, input_html: { data: { flatpickr_target: "secondRangeInput" } }, as: :string %>
         <%= f.submit class: "btn btn-flat my-3 col-4 w-100" %>
-      <% end %>
-
-      <%= month_calendar do |date| %>
-        <%= date %>
       <% end %>
     </div>
   </div>
