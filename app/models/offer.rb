@@ -1,13 +1,14 @@
 class Offer < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   belongs_to :user
 
-  validates :category, :title, :description, :price, presence: true
+  validates :category, :title, :description, :price, :address, presence: true
 
   validates :category, inclusion: { in: ['Bicycle', 'Skateboard', 'Scooter', 'Rollerblades'] }
 
   validates :price, numericality: { only_integer: true }
-
-  # validates :rating, length: { in: 0..5 }
 
   validates :description, length: { in: 10..800 }, allow_blank: false
 
