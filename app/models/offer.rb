@@ -9,9 +9,9 @@ class Offer < ApplicationRecord
 
   # validates :rating, length: { in: 0..5 }
 
-  validates :description, length: { in: 10..300 }, allow_blank: false
+  validates :description, length: { in: 10..800 }, allow_blank: false
 
-  validates :title, length: { in: 10..30 }, allow_blank: false
+  validates :title, length: { in: 10..100 }, allow_blank: false
 
   validates :price, numericality: { greater_than_or_equal_to: 1}, allow_blank: false
 

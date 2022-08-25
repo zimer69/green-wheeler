@@ -26,8 +26,8 @@ puts "[2/3] Generating seed..."
       price: Faker::Number.number(digits: 2),
       user_id: user.id,
       rating: rand(0..5),
-      title: Faker::Quote.yoda[0..29],
-      description: Faker::Lorem.sentence(word_count: 15),
+      title: Faker::Quote.yoda[0..99],
+      description: Faker::Lorem.sentence(word_count: 50),
       electric: [true, false].sample,
       safety_equipment: [true, false].sample,
       optional: ['None', 'Padlock', 'Backseat'].sample

@@ -8,6 +8,8 @@ class OffersController < ApplicationController
 
   def show
     authorize @offer
+    @booking = Booking.new
+    authorize @booking
   end
 
   def my_offers
