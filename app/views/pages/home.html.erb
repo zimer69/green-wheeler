@@ -8,7 +8,7 @@
 <main class="container">
   <div class="row mt-3">
     <% @offers.each do |offer| %>
-      <div class="col-sm-12 col-md-6 col-lg-6 my-3">
+      <div class="col-sm-12 col-lg-6 col-xl-4 my-3">
         <%= link_to offer_path(offer), class: "text-decoration-none" do %>
           <%= render 'shared/card', offer: offer %>
         <% end %>
@@ -18,15 +18,27 @@
 
 
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <%= render 'shared/card', offer: @offers.first %>
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="..." class="d-block w-100" alt="...">
+    <div class="row mt-3">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="col-sm-12 col-md-6 my-3 margin-auto">
+            <%= link_to offer_path(@offers.first), class: "text-decoration-none" do %>
+              <%= render 'shared/card', offer: @offers.first %>
+            <% end %>
+          </div>
+        </div>
+        <% @offers[1..-1].each do |offer| %>
+          <div class="carousel-item">
+            <div class="col-sm-12 col-md-6 my-3 margin-auto">
+              <%= link_to offer_path(offer), class: "text-decoration-none" do %>
+                <%= render 'shared/card', offer: offer %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <%# <div class="carousel-item">
+          <img src="..." class="d-block w-100" alt="...">
+        </div> %>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

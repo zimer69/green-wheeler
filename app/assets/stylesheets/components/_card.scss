@@ -31,7 +31,7 @@
 }
 
 .card-offer-text {
-  // min-height: 200px;
+  width: 100%;
 }
 
 .card-offer {
@@ -49,10 +49,6 @@
   font-size: 15px;
   opacity: 0.7;
   margin: 0;
-}
-
-.features {
-
 }
 
 #per-day {
@@ -73,4 +69,12 @@
   justify-content: space-between;
   width: 100%;
   padding: 10px 15px 2px 10px;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.margin-auto {
+  margin: 0 auto;
 }
