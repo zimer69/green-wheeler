@@ -4,7 +4,6 @@
     <div>
       <h1><%= offer.title[0..17] %>...</h2>
       <p class="my-3"><%= offer.description[0..80] %>...</p>
-
       <%if offer.electric == true %>
         <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
       <% else %>
