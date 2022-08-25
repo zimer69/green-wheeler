@@ -64,6 +64,22 @@
         <%= f.input :end_date, input_html: { data: { flatpickr_target: "secondRangeInput" } }, as: :string %>
         <%= f.submit class: "btn btn-flat my-3 col-4 w-100" %>
       <% end %>
+
+      <div>
+      <p><strong>Reviews</strong></p>
+        <ul class="list-group">
+          <% @offer.reviews.each do |review| %>
+            <li class="list-group-item"><%= review.content %></li>
+          <% end %>
+        </ul>
+        <br>
+      </div>
+      <div>
+        <%= simple_form_for [@offer, @review] do |f| %>
+          <%= f.input :content %>
+          <%= f.submit  %>
+        <% end %>
+      </div>
     </div>
   </div>
 </main>

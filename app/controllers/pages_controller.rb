@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @offers = policy_scope(Offer)
+    @reviews
   end
 end
