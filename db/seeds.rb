@@ -23,7 +23,7 @@ puts "[2/3] Generating seed..."
   5.times do
     Offer.create!(
       category: ['Bicycle', 'Skateboard', 'Scooter', 'Rollerblades'].sample,
-      price_in_cents: Faker::Number.number(digits: 5),
+      price: Faker::Number.number(digits: 2),
       user_id: user.id,
       rating: rand(0..5),
       title: Faker::Quote.yoda[0..29],
