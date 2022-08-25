@@ -3,8 +3,12 @@
     <div class="offer-info">
       <h2 class='my-3'><%= @offer.title %></h2>
       <div class="offer-image mt-3">
-        <% @offer.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, crop: :fill %>
+        <% if @offer.photos.present? %>
+          <% @offer.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, crop: :fill %>
+          <% end %>
+        <% else %>
+          <%= image_tag("https://source.unsplash.com/random/?bicycle") %>
         <% end %>
       </div>
     </div>
@@ -48,9 +52,9 @@
 
       <p class='my-4'><%= @offer.description %></p>
 
-      <%= simple_form_for [@offer, @booking] do |f| %>
-        <%= f.input :start_date %>
-        <%= f.input :end_date %>
+      <%= simple_form_for [@offer, @booking], data: { controller: "flatpickr" } do |f| %>
+        <%= f.input :start_date, input_html: { data: { flatpickr_target: "firstRangeInput" } }, as: :string %>
+        <%= f.input :end_date, input_html: { data: { flatpickr_target: "secondRangeInput" } }, as: :string %>
         <%= f.submit class: "btn btn-flat my-3 col-4 w-100" %>
       <% end %>
     </div>
