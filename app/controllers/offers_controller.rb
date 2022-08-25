@@ -3,9 +3,6 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-
-    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
-
     if params[:query].present?
       @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
     else
