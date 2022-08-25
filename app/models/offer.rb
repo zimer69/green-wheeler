@@ -20,4 +20,11 @@ class Offer < ApplicationRecord
   validates :optional, inclusion: { in: ['None', 'Padlock', 'Backseat'] }
 
   validates :electric, :safety_equipment, inclusion: { in: [true, false] }, allow_blank: false
+
+  include PgSearch::Model
+  pg_search_scope :search_by_title_and_description,
+                  against: %i[title description],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

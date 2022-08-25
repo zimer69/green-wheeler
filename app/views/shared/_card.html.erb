@@ -1,5 +1,18 @@
 <div class="card-offer">
-  <%= cl_image_tag offer.photos.first.key, crop: :fill %>
+  <% if offer.photos.empty? %>
+    <% case offer.category %>
+      <% when 'Bicycle'%>
+      <%= image_tag 'https://images.unsplash.com/uploads/14122621859313b34d52b/37e28531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80' %>
+      <% when 'Skateboard'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
+      <% when 'Rollerblades'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1583832292569-7092d6d90873?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1204&q=80' %>
+      <% when 'Scooter'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
+    <% end %>
+  <% else %>
+    <%= cl_image_tag offer.photos.first.key, crop: :fill %>
+  <% end %>
   <div class="card-offer-infos">
     <div>
       <h1><%= offer.title[0..17] %>...</h2>
