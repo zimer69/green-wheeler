@@ -86,6 +86,8 @@ class OffersController < ApplicationController
                                   :electric,
                                   :safety_equipment,
                                   :address,
-                                  :optional)
+                                  :optional,
+                                  photos: []
+                                 )
   end
 end

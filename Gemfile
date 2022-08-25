@@ -15,6 +15,9 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+# Cloudinary gem to Upload pictures
+gem "cloudinary"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 
@@ -42,6 +45,8 @@ gem "faker"
 # Geocoder gem for location features
 gem "geocoder"
 
+# Dotenv gem for security
+gem "dotenv-rails", groups: [:development, :test]
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

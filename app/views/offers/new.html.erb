@@ -12,6 +12,7 @@
     <%=f.input :electric, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
     <%=f.input :safety_equipment, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
     <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit %>
   <% end %>
 </main>

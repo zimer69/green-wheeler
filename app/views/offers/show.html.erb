@@ -3,7 +3,9 @@
     <div class="offer-info">
       <h2 class='my-3'><%= @offer.title %></h2>
       <div class="offer-image mt-3">
-        <%= image_tag("https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") %>
+        <% @offer.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, crop: :fill %>
+        <% end %>
       </div>
     </div>
 
