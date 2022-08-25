@@ -27,6 +27,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Search Gem
+gem "pg_search"
+
 #Using Devise Gem
 gem "devise"
 

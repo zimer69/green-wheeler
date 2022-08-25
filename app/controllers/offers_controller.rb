@@ -3,12 +3,19 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @offers = policy_scope(Offer)
+
+    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
+
+    if params[:query].present?
+      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
+    else
+      @offers = policy_scope(Offer)
+    end
     @markers = @offers.geocoded.map do |offer|
       {
         lat: offer.latitude,
         lng: offer.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {offer: offer})
+        info_window: render_to_string(partial: "info_window", locals: { offer: offer })
       }
     end
   end
