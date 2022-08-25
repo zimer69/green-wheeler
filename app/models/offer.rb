@@ -4,7 +4,7 @@ class Offer < ApplicationRecord
 
   belongs_to :user
 
-  validates :category, :title, :description, :price, presence: true
+  validates :category, :title, :description, :price, :address, presence: true
 
   validates :category, inclusion: { in: ['Bicycle', 'Skateboard', 'Scooter', 'Rollerblades'] }
 
