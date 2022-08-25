@@ -1,7 +1,7 @@
-import flatpickr from 'flatpickr';
+// import flatpickr from 'flatpickr';
 
-const initFlatpickr = () => {
-  flatpickr('.datepicker', {});
-};
+// const initFlatpickr = () => {
+//   flatpickr('.datepicker', {});
+// };
 
-export { initFlatpickr };
+// export { initFlatpickr };

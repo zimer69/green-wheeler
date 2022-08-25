@@ -3,8 +3,12 @@
     <div class="offer-info">
       <h2 class='my-3'><%= @offer.title %></h2>
       <div class="offer-image mt-3">
-        <% @offer.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, crop: :fill %>
+        <% if @offer.photos.present? %>
+          <% @offer.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, crop: :fill %>
+          <% end %>
+        <% else %>
+          <%= image_tag("https://source.unsplash.com/random/?bicycle") %>
         <% end %>
       </div>
     </div>

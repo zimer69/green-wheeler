@@ -1,5 +1,9 @@
 <div class="card-offer">
-  <%= cl_image_tag offer.photos.first.key, crop: :fill %>
+  <% if offer.photos.present? %>
+    <%= cl_image_tag offer.photos.first.key, crop: :fill %>
+  <% else %>
+    <%= image_tag("https://source.unsplash.com/random/?bicycle") %>
+  <% end %>
   <div class="card-offer-infos">
     <div>
       <h1><%= offer.title[0..17] %>...</h2>
