@@ -14,9 +14,11 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
-    redirect_to offer_path(@offer)
+      redirect_to offer_path(@offer)
     else
+      @booking = Booking.new
       render "offers/show", status: :unprocessable_entity
+
     end
   end
 
@@ -29,5 +31,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:content)
   end
-
 end
