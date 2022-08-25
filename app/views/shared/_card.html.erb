@@ -14,24 +14,40 @@
     <%= cl_image_tag offer.photos.first.key, crop: :fill %>
   <% end %>
   <div class="card-offer-infos">
-    <div>
-      <h1><%= offer.title[0..17] %>...</h2>
+    <div class="card-offer-text">
+      <div class="d-flex justify-content-between">
+        <h1><%= offer.title[0..17] %>...</h2>
+        <%if offer.category == 'Bicycle'%>
+          <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
+        <% elsif offer.category == 'Skateboard' %>
+          <p id="category"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= offer.category %></p>
+        <% elsif offer.category == 'Scooter' %>
+          <p id="category"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= offer.category %></p>
+        <% else %>
+          <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
+        <% end %>
+      </div>
+
       <p class="my-3"><%= offer.description[0..80] %>...</p>
-      <%if offer.electric == true %>
-        <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
-      <% else %>
-        <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
-      <% end %>
 
-      <% if offer.optional == 'Padlock' %>
-        <p class="feature my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
-      <% elsif offer.optional == 'Backseat' %>
-        <p class="feature my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
-      <% end %>
+      <div class="features d-flex">
+        <%if offer.electric == true %>
+          <p class="feature my-1 me-2"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
+        <% else %>
+          <p class="feature my-1 me-2"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+        <% end %>
 
-      <% if offer.safety_equipment == true %>
-        <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
-      <% end %>
+        <% if offer.optional == 'Padlock' %>
+          <p class="feature my-1 me-2"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+        <% elsif offer.optional == 'Backseat' %>
+          <p class="feature my-1 me-2"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+        <% end %>
+
+        <% if offer.safety_equipment == true %>
+          <p class="feature my-1 me-2"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+        <% end %>
+      </div>
+
     </div>
 
 
@@ -45,10 +61,8 @@
       <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
     <% end %>
   </div>
-
-  <div class="card-footer">
+  <div class="card-footer mb-3">
     <h2 class="card-offer-pricing">$<%= offer.price %><span id="per-day">/day</span></h2>
     <h2 id="offer-rating"><%= offer.rating %><i class="fa-solid fa-star"></i></h2>
   </div>
-
 </div>
