@@ -1,48 +1,56 @@
-<main class="container  my-3">
-  <div class="text-center">
-    <h2 class='my-3'><%= @offer.title %></h2>
-    <div class="offer-image my-3">
-      <%= image_tag("https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") %>
+<main class="container my-3">
+  <div>
+    <div class="offer-info">
+      <h2 class='my-3'><%= @offer.title %></h2>
+      <div class="offer-image mt-3">
+        <%= image_tag("https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") %>
+      </div>
     </div>
+
     <div class="offer-info">
       <div class="d-flex justify-content-between">
-        <div class="d-flex">
+        <div>
+          <div class="d-flex">
           <%if @offer.electric == true %>
-            <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
+            <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
           <% else %>
-            <p class="feature my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+            <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
           <% end %>
 
           <% if @offer.optional == 'Padlock' %>
-            <p class="feature my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+            <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
           <% elsif @offer.optional == 'Backseat' %>
-            <p class="feature my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+            <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
           <% end %>
 
           <% if @offer.safety_equipment == true %>
-            <p class="feature my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+            <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
           <% end %>
+          </div>
+          <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @offer.rating %></p>
         </div>
-        <div>
+
+        <div class="text-end">
           <%if @offer.category == 'Bicycle'%>
-            <p><i class="fa-solid fa-bicycle"></i> <%= @offer.category %></p>
+            <p class="category-icon mb-0"><i class="fa-solid fa-bicycle"></i> <%= @offer.category %></p>
           <% elsif @offer.category == 'Skateboard' %>
-            <p><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= @offer.category %></p>
+            <p class="category-icon mb-0"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= @offer.category %></p>
           <% elsif @offer.category == 'Scooter' %>
-            <p><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= @offer.category %></p>
+            <p class="category-icon mb-0"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= @offer.category %></p>
           <% else %>
-            <p><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
+            <p class="category-icon mb-0"><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
           <% end %>
+          <p class="rating m-0">Only <strong class="category-icon">$<%= @offer.price %></strong> /day</p>
         </div>
       </div>
-
-
 
       <p class='my-4'><%= @offer.description %></p>
-      <p class=>Only $<strong><%= @offer.price %></strong> per day!</p>
-      <div class="button d-flex justify-content-center">
-        <%= link_to "Book Now!",  new_offer_booking_path(@offer), class: "nav-link btn-flat my-3 col-4 center"  %>
-      </div>
+
+      <%= simple_form_for [@offer, @booking] do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.submit class: "btn btn-flat my-3 col-4 w-100" %>
+      <% end %>
     </div>
   </div>
 </main>
