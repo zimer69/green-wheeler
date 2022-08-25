@@ -49,17 +49,6 @@
       </div>
 
     </div>
-
-
-    <%if offer.category == 'Bicycle'%>
-      <p id="category"><i class="fa-solid fa-bicycle"></i> <%= offer.category %></p>
-    <% elsif offer.category == 'Skateboard' %>
-      <p id="category"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= offer.category %></p>
-    <% elsif offer.category == 'Scooter' %>
-      <p id="category"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= offer.category %></p>
-    <% else %>
-      <p id="category"><i class="fa-solid fa-person-skating"></i> <%= offer.category %></p>
-    <% end %>
   </div>
   <div class="card-footer mb-3">
     <h2 class="card-offer-pricing">$<%= offer.price %><span id="per-day">/day</span></h2>

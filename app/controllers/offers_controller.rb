@@ -24,6 +24,7 @@ class OffersController < ApplicationController
     authorize @offer
     @booking = Booking.new
     authorize @booking
+    @review = Review.new
   end
 
   def my_offers

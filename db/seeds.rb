@@ -16,8 +16,7 @@ puts "[2/3] Generating seed..."
     password: "secret",
     first_name: Faker::Name.unique.first_name,
     last_name: Faker::Name.unique.last_name,
-    rating: rand(0..5),
-    user_type: %w[customer owner].sample
+    rating: rand(0..5)
   )
   p user
   5.times do
