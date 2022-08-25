@@ -45,10 +45,6 @@ gem "faker"
 # Geocoder gem for location features
 gem "geocoder"
 
-
-# Simple Calendar gem for Booking features
-gem "simple_calendar", "~> 2.4"
-
 # Dotenv gem for security
 gem "dotenv-rails", groups: [:development, :test]
 
