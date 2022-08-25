@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "my_offers", to: "offers#my_offers"
 
+  resources :users, only: [:show]
+
   resources :bookings, only: [] do
     member do
       get :accept

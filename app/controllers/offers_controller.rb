@@ -4,9 +4,9 @@ class OffersController < ApplicationController
 
   def index
     if params[:query].present?
-      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
+      @offers = policy_scope(Offer).search_by_title_and_description(params[:query]).where.not(user: current_user)
     else
-      @offers = policy_scope(Offer)
+      @offers = policy_scope(Offer).where.not(user: current_user)
     end
     @markers = @offers.geocoded.map do |offer|
       {
