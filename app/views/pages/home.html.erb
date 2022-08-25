@@ -2,7 +2,17 @@
   <div class="container text-center">
     <h1>Rent your best ride!<strong></h1>
     <p>Enjoy the city with more <strong>freedom!</strong></p>
-    <a class="btn btn-flat" href=  >Book now</a>
+
+    <div class="container col-5">
+      <%= form_with url: offers_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :address,
+      params[:address],
+      class: "form-control",
+      placeholder: "Where do you wanna go" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+<% end %>
+
   </div>
 </div>
 <main class="container">

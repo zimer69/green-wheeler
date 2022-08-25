@@ -4,13 +4,22 @@ class OffersController < ApplicationController
 
   def index
 
-    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
+    # home page search for location
+    if params[:address].present?
+      @offers = policy_scope(Offer).search_by_address(params[:address])
 
-    if params[:query].present?
-      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
     else
       @offers = policy_scope(Offer)
     end
+
+    # offers page search for specific offer
+    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
+    if params[:query].present?
+      @offers = @offers.search_by_title_and_description(params[:query])
+    else
+      @offers = policy_scope(Offer).search_by_address(params[:address])
+    end
+
     @markers = @offers.geocoded.map do |offer|
       {
         lat: offer.latitude,
@@ -18,6 +27,7 @@ class OffersController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { offer: offer })
       }
     end
+
   end
 
   def show

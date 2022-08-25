@@ -27,4 +27,16 @@ class Offer < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  pg_search_scope :search_by_address,
+                  against: [:address],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
+  pg_search_scope :search_by_extras,
+                  against: %i[safety_equipment optional electric],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end
