@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   get "my_offers", to: "offers#my_offers"
 
+  resources :bookings, only: [] do
+    member do
+      get :accept
+      get :decline
+    end
+  end
+
   resources :offers do
     resources :bookings, only: %i[new create edit update destroy]
   end
