@@ -4,6 +4,7 @@ class OffersController < ApplicationController
 
   def index
     @offers = policy_scope(Offer)
+    @offers = @offers.where.not(user: current_user)
 
     # home page search for location
     if params[:address].present?
