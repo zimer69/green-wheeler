@@ -14,3 +14,16 @@ $duration: 250ms;
     }
   }
 }
+
+.carousel-avatar {
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+}
+
+.carousel-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
