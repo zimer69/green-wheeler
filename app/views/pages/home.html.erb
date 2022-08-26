@@ -3,8 +3,8 @@
     <h1>Rent your best ride!<strong></h1>
     <p>Enjoy the city with more <strong>freedom</strong>.</p>
     <%= form_with url: offers_path, method: :get, class: "d-flex search-input" do %>
-      <%= text_field_tag :query,
-        params[:query],
+      <%= text_field_tag :address,
+        params[:address],
         class: "form-control",
         placeholder: "Find an Offer"%>
       <%= submit_tag "Search", class: "btn btn-green" %>

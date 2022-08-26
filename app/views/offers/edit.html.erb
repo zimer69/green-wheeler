@@ -1,0 +1,18 @@
+<main class="container my-3 p-4">
+  <%= simple_form_for(@offer) do |f| %>
+    <%= f.input :title, :value => @offer.title %>
+    <%= f.input :category, :collection => %w[Bicycle Skateboard Scooter Rollerblades], required: true %>
+    <%= f.input :description, :value => @offer.description %>
+    <%= f.input :price, :label => "Price per day ($)", :value => @offer.price%>
+    <%= f.input :address,
+            input_html: {data: {address_autocomplete_target: "address"},
+            class: "d-none"},
+            wrapper_html: {data: {controller: "address-autocomplete",
+            address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+    <%=f.input :electric, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
+    <%=f.input :safety_equipment, as: :boolean, checked_value: 'warning', unchecked_value: 'open'%>
+    <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.submit %>
+  <% end %>
+</main>
