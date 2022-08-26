@@ -3,11 +3,29 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    if params[:query].present?
-      @offers = policy_scope(Offer).search_by_title_and_description(params[:query]).where.not(user: current_user)
+    # home page search for location
+    if params[:address].present?
+      @offers = policy_scope(Offer).search_by_address(params[:address])
+
     else
       @offers = policy_scope(Offer).where.not(user: current_user)
     end
+
+    # filtering the checkboxes
+      # non_valid_offers = []
+      # non_valid_offers << @offers.search_by_electric(true) unless params[:electric].present?
+      # non_valid_offers << @offers.search_by_safety_equipment(true) unless params[:safety_equipment].present?
+      # non_valid_offers << @offers.search_by_optional('Padlock') unless params[:padlock].present?
+      # non_valid_offers << @offers.search_by_optional('Backseat') unless params[:backseat].present?
+
+    # offers page search for specific offer
+    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
+    if params[:query].present?
+      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
+    else
+      @offers = policy_scope(Offer)
+    end
+
     @markers = @offers.geocoded.map do |offer|
       {
         lat: offer.latitude,
@@ -48,7 +66,8 @@ class OffersController < ApplicationController
   end
 
   def edit
-    authorize @offer
+    @offers = policy_scope(Offer)
+    authorize @offers
   end
 
   def update

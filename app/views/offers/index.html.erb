@@ -1,12 +1,34 @@
 <main class="container">
   <div class="row mt-3">
     <%= form_with url: offers_path, method: :get, class: "d-flex" do %>
+
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
         placeholder: "Find an Offer"%>
       <%= submit_tag "Search", class: "btn btn-flat" %>
+
+  </div>
+  <div class="row mt-3 ">
+
+        <div class="checkbox col-3">
+          <%= check_box_tag :safety_equipment %>
+          <p>Safety Equipment</p>
+        </div>
+        <div class="checkbox col-3">
+          <%= check_box_tag :padlock %>
+          <p>Padlock</p>
+        </div>
+        <div class="checkbox col-3">
+          <%= check_box_tag :electric %>
+          <p>Electric</p>
+        </div>
+        <div class="checkbox col-3">
+          <%= check_box_tag :backseat %>
+          <p>Backseat</p>
+        </div>
     <% end %>
+
     <% @offers.each do |offer| %>
       <div class="col-sm col-md-4 my-3">
         <%= link_to offer_path(offer), class: "text-decoration-none" do %>
