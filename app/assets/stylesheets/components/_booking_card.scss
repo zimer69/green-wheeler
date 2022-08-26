@@ -1,0 +1,66 @@
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+
+  .accept-booking {
+    text-decoration: none;
+    color: inherit;
+    color: #5CB25B;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #5CB25B;
+      opacity: 1;
+    }
+  }
+
+  .decline-booking {
+    text-decoration: none;
+    color: inherit;
+    color: #b25b5b;
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #b25b5b;
+      opacity: 1;
+    }
+  }
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
+.booking-accepted {
+  color: #5CB25B;
+}
+
+.booking-declined {
+  color: #b25b5b;
+}

@@ -3,40 +3,47 @@
 </header>
 <main>
 
-  <section class="container mb-5">
-    <div class="row">
-      <div class="row col-8 background-green-2 b-solid b-radius py-4">
-        <h3>Your offers</h3>
-        <% current_user.offers.each do |offer| %>
-          <div class="col-sm col-md-6 my-3">
-            <%= link_to offer_path(offer), class: "text-decoration-none" do %>
-              <%= render 'shared/card', offer: offer %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <aside class="row col-4">
-        <div class="row col-8 background-green-2 b-solid b-radius py-4">
-          <h3>Your Bookings As Owner</h3>
-          <% current_user.bookings_as_owner.each do |booking| %>
-          <div class="col-sm col-md-6 my-3">
-            <%= render 'shared/booking_card', booking: booking %>
-              <% unless booking.status == 'pending' %>
-                <%= link_to "Accept", accept_booking_path(booking) %>
-                <%= link_to "Decline", decline_booking_path(booking) %>
-              <% end %>
-            <% end %>
-          </div>
-      </div>
+  <section class="mb-5">
+    <div class="row row-cols-2 justify-content-center w-100">
 
-        <div class="row col-8 background-green-2 b-solid b-radius py-4">
-        <h3>Your Bookings As Customer</h3>
-          <% current_user.bookings.each do |booking| %>
-            <div class="col-sm col-md-6 my-3">
-              <%= render 'shared/booking_card', booking: booking %>
+      <div class="col-12 col-lg-6 background-green-2 b-solid b-radius p-5 mx-3">
+        <div class="row">
+          <h3>Your offers</h3>
+          <% current_user.offers.each do |offer| %>
+            <div class="col-sm-12 my-3">
+              <%= link_to offer_path(offer), class: "text-decoration-none" do %>
+                <%= render 'shared/card', offer: offer %>
+              <% end %>
+            </div>
           <% end %>
         </div>
+      </div>
+
+      <aside class="col-12 col-lg-4 mx-3">
+        <div class="row">
+          <div class="col-12 background-green-2 b-solid b-radius p-5">
+            <div class="row">
+              <h3>Your offer's bookings</h3>
+              <% current_user.bookings_as_owner.each do |booking| %>
+                <div class="col-sm-12">
+                  <%= render 'shared/booking_owner', booking: booking %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="col-12 background-green-2 b-solid b-radius p-5">
+            <div class="row">
+              <h3>Your personal bookings</h3>
+              <% current_user.bookings.each do |booking| %>
+                <div class="col-sm-12">
+                  <%= render 'shared/booking_card', booking: booking %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </aside>
+
     </div>
   </section>
 

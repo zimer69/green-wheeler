@@ -11,18 +11,22 @@ class BookingsController < ApplicationController
   end
 
   def accept
+    authorize @booking
+
     if @booking.accepted!
-      redirect_to @booking, notice: 'booking accepted'
+      redirect_to user_path(current_user), notice: 'booking accepted'
     else
-      redirect_to @booking, notice: 'booking could not be accepted - please try again'
+      redirect_to user_path(current_user), notice: 'booking could not be accepted - please try again'
     end
   end
 
   def decline
+    authorize @booking
+
     if @booking.rejected!
-      redirect_to @booking, notice: 'booking rejected'
+      redirect_to user_path(current_user), notice: 'booking rejected'
     else
-      redirect_to @booking, notice: 'booking could not be rejected - please try again'
+      redirect_to user_path(current_user), notice: 'booking could not be rejected - please try again'
     end
   end
 
