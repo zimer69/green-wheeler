@@ -34,8 +34,18 @@ class Offer < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
-  pg_search_scope :search_by_extras,
-                  against: %i[safety_equipment optional electric],
+  pg_search_scope :search_by_electric,
+                  against: %i[electric],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_optional,
+                  against: %i[optional],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_safety_equipment,
+                  against: %i[safety_equipment],
                   using: {
                     tsearch: { prefix: true }
                   }
