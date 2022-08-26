@@ -40,6 +40,7 @@ class OffersController < ApplicationController
     @booking = Booking.new
     authorize @booking
     @review = Review.new
+    @average = Offer.average(:rating)
   end
 
   def my_offers
