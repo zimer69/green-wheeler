@@ -3,7 +3,6 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-
     # home page search for location
     if params[:address].present?
       @offers = policy_scope(Offer).search_by_address(params[:address])
@@ -13,17 +12,18 @@ class OffersController < ApplicationController
     end
 
     # filtering the checkboxes
-    non_valid_offers = []
-    non_valid_offers << @offers.search_by_electric(true) unless params[:electric].present?
-    non_valid_offers << @offers.search_by_safety_equipment(true) unless params[:safety_equipment].present?
-    non_valid_offers << @offers.search_by_optional('Padlock') unless params[:padlock].present?
-    non_valid_offers << @offers.search_by_optional('Backseat') unless params[:backseat].present?
+      # non_valid_offers = []
+      # non_valid_offers << @offers.search_by_electric(true) unless params[:electric].present?
+      # non_valid_offers << @offers.search_by_safety_equipment(true) unless params[:safety_equipment].present?
+      # non_valid_offers << @offers.search_by_optional('Padlock') unless params[:padlock].present?
+      # non_valid_offers << @offers.search_by_optional('Backseat') unless params[:backseat].present?
+
     # offers page search for specific offer
     sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
     if params[:query].present?
-      @offers = policy_scope(Offer).search_by_address(params[:address]).search_by_title_and_description(params[:query])
+      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
     else
-      @offers = policy_scope(Offer).search_by_address(params[:address])
+      @offers = policy_scope(Offer)
     end
 
     @markers = @offers.geocoded.map do |offer|
@@ -33,7 +33,6 @@ class OffersController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { offer: offer })
       }
     end
-
   end
 
   def show
@@ -67,7 +66,8 @@ class OffersController < ApplicationController
   end
 
   def edit
-    authorize @offer
+    @offers = policy_scope(Offer)
+    authorize @offers
   end
 
   def update
