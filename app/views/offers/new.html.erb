@@ -1,18 +1,22 @@
-<main class="container my-3 p-4">
-  <%= simple_form_for(@offer) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :category, :collection => %w[Bicycle Skateboard Scooter Rollerblades], required: true %>
-    <%= f.input :description %>
-    <%= f.input :price, :label => "Price per day ($)" %>
-    <%= f.input :address,
-            input_html: {data: {address_autocomplete_target: "address"},
-            class: "d-none"},
-            wrapper_html: {data: {controller: "address-autocomplete",
-            address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-    <%=f.input :electric %>
-    <%=f.input :safety_equipment %>
-    <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.submit %>
-  <% end %>
+<main class="container my-5 p-5">
+  <div class="form-card background-green b-radius p-5 pb-4">
+    <h1 class="mb-5">Create your offer</h1>
+    <%= simple_form_for(@offer) do |f| %>
+      <%= f.input :title, input_html: { class: "border-green b-radius" } %>
+      <%= f.input :category, :collection => %w[Bicycle Skateboard Scooter Rollerblades], required: true, input_html: { class: "border-green b-radius" } %>
+      <%= f.input :description, input_html: { class: "border-green b-radius" } %>
+      <%= f.input :price, :label => "Price per day ($)", input_html: { class: "border-green b-radius" } %>
+      <%= f.input :address,
+              input_html: { data: { address_autocomplete_target: "address" }, class: "d-none" },
+              wrapper_html: {
+                class: "border-green b-radius",
+                data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] }
+              } %>
+      <%= f.input :electric, as: :boolean, checked_value: 'warning', unchecked_value: 'open', input_html: { class: "border-green b-radius" } %>
+      <%= f.input :safety_equipment, as: :boolean, checked_value: 'warning', unchecked_value: 'open', input_html: { class: "border-green b-radius" } %>
+      <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true, input_html: { class: "border-green b-radius" } %>
+      <%= f.input :photos, as: :file, input_html: { class: "border-green b-radius", multiple: true } %>
+      <%= f.submit class: "btn btn-lg btn-outline-light b-radius w-100 my-4" %>
+    <% end %>
+  </div>
 </main>

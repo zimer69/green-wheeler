@@ -5,7 +5,7 @@
         <%= image_tag "https://cdn-icons-png.flaticon.com/512/706/706170.png" %>
       <% end %>
       <%= link_to "#", class: "nav-link" do %>
-        <h4>GREEN WHEELER</h4>
+        <h4>Green Wheeler</h4>
       <% end %>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +14,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
+          <li class="nav-item active me-2">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-2">
             <%= link_to "New Offer", new_offer_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-2">
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
@@ -32,13 +32,13 @@
             </div>
           </li>
         <% else %>
-        <li class="nav-item">
+        <li class="nav-item me-2">
           <%= link_to "New Offer", new_offer_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item me-2">
           <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
         </li>
-          <li class="nav-item">
+          <li class="nav-item me-2">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>

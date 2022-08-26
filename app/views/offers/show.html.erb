@@ -1,85 +1,91 @@
-<main class="container my-3">
-  <div>
-    <div class="offer-info">
-      <h2 class='my-3'><%= @offer.title %></h2>
-      <div class="offer-image mt-3">
-        <% if @offer.photos.empty? %>
-          <% case @offer.category %>
-            <% when 'Bicycle'%>
-            <%= image_tag 'https://images.unsplash.com/uploads/14122621859313b34d52b/37e28531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80' %>
-            <% when 'Skateboard'%>
-              <%= image_tag 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
-            <% when 'Rollerblades'%>
-              <%= image_tag 'https://images.unsplash.com/photo-1583832292569-7092d6d90873?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1204&q=80' %>
-            <% when 'Scooter'%>
-              <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
-          <% end %>
-        <% else %>
-          <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
+<main class="my-5">
+
+  <div class="offer-info container">
+    <h2 class='my-3'><%= @offer.title %></h2>
+    <div class="offer-image mt-3">
+      <% if @offer.photos.empty? %>
+        <% case @offer.category %>
+          <% when 'Bicycle'%>
+          <%= image_tag 'https://images.unsplash.com/uploads/14122621859313b34d52b/37e28531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80' %>
+          <% when 'Skateboard'%>
+            <%= image_tag 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
+          <% when 'Rollerblades'%>
+            <%= image_tag 'https://images.unsplash.com/photo-1583832292569-7092d6d90873?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1204&q=80' %>
+          <% when 'Scooter'%>
+            <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
         <% end %>
-      </div>
-    </div>
-
-    <div class="offer-info">
-      <div class="d-flex justify-content-between">
-        <div>
-          <div class="d-flex">
-          <%if @offer.electric == true %>
-            <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
-          <% else %>
-            <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
-          <% end %>
-
-          <% if @offer.optional == 'Padlock' %>
-            <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
-          <% elsif @offer.optional == 'Backseat' %>
-            <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
-          <% end %>
-
-          <% if @offer.safety_equipment == true %>
-            <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
-          <% end %>
-          </div>
-          <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @offer.rating %></p>
-        </div>
-
-        <div class="text-end">
-          <%if @offer.category == 'Bicycle'%>
-            <p class="category-icon mb-0"><i class="fa-solid fa-bicycle"></i> <%= @offer.category %></p>
-          <% elsif @offer.category == 'Skateboard' %>
-            <p class="category-icon mb-0"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= @offer.category %></p>
-          <% elsif @offer.category == 'Scooter' %>
-            <p class="category-icon mb-0"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= @offer.category %></p>
-          <% else %>
-            <p class="category-icon mb-0"><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
-          <% end %>
-          <p class="rating m-0">Only <strong class="category-icon">$<%= @offer.price %></strong> /day</p>
-        </div>
-      </div>
-
-      <p class='my-4'><%= @offer.description %></p>
-
-      <%= simple_form_for [@offer, @booking], data: { controller: "flatpickr" } do |f| %>
-        <%= f.input :start_date, input_html: { data: { flatpickr_target: "firstRangeInput" } }, as: :string %>
-        <%= f.input :end_date, input_html: { data: { flatpickr_target: "secondRangeInput" } }, as: :string %>
-        <%= f.submit class: "btn btn-flat my-3 col-4 w-100" %>
+      <% else %>
+        <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
       <% end %>
-
-      <div>
-      <p><strong>Reviews</strong></p>
-        <ul class="list-group">
-          <% @offer.reviews.each do |review| %>
-            <li class="list-group-item"><%= review.content %></li>
-          <% end %>
-        </ul>
-        <br>
-      </div>
-      <div>
-        <%= simple_form_for [@offer, @review] do |f| %>
-          <%= f.input :content %>
-          <%= f.submit  %>
-        <% end %>
-      </div>
     </div>
   </div>
+
+  <section class="offer-info container">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="d-flex">
+        <%if @offer.electric == true %>
+          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
+        <% else %>
+          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+        <% end %>
+
+        <% if @offer.optional == 'Padlock' %>
+          <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+        <% elsif @offer.optional == 'Backseat' %>
+          <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+        <% end %>
+
+        <% if @offer.safety_equipment == true %>
+          <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+        <% end %>
+        </div>
+        <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @offer.rating %></p>
+      </div>
+
+      <div class="text-end">
+        <%if @offer.category == 'Bicycle'%>
+          <p class="category-icon mb-0"><i class="fa-solid fa-bicycle"></i> <%= @offer.category %></p>
+        <% elsif @offer.category == 'Skateboard' %>
+          <p class="category-icon mb-0"><iconify-icon icon="ic:outline-skateboarding" ></iconify-icon> <%= @offer.category %></p>
+        <% elsif @offer.category == 'Scooter' %>
+          <p class="category-icon mb-0"><iconify-icon icon="mdi:scooter"></iconify-icon></i> <%= @offer.category %></p>
+        <% else %>
+          <p class="category-icon mb-0"><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
+        <% end %>
+        <p class="rating m-0">Only <strong class="category-icon">$<%= @offer.price %></strong> /day</p>
+      </div>
+    </div>
+
+    <p class='my-4'><%= @offer.description %></p>
+  </section>
+
+  <section id="bookings" class="background-green my-5">
+    <div class="offer-info container p-5">
+      <h3 class="text-center mb-5">Book this offer!</h3>
+      <%= simple_form_for [@offer, @booking], data: { controller: "flatpickr" } do |f| %>
+        <%= f.input :start_date, input_html: { class: "border-green b-radius", data: { flatpickr_target: "firstRangeInput" } }, as: :string %>
+        <%= f.input :end_date, input_html: { class: "border-green b-radius", data: { flatpickr_target: "secondRangeInput" } }, as: :string %>
+        <%= f.submit "Book now!", class: "btn btn-outline-light b-radius my-3 col-4 w-100" %>
+      <% end %>
+    </div>
+  </section>
+
+  <section id="reviews" class="offer-info background-green container b-radius my-5 p-5">
+    <div>
+      <h3 class="text-center mb-5">Reviews</h3>
+      <ul class="list-group">
+        <% @offer.reviews.each do |review| %>
+          <li class="list-group-item"><%= review.content %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <%= simple_form_for [@offer, @review] do |f| %>
+        <%= f.input :content, input_html: { class: "border-green" } %>
+        <%= f.submit "Add a review", class: "btn btn-outline-light b-radius w-100" %>
+      <% end %>
+    </div>
+  </section>
+
 </main>

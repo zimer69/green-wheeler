@@ -16,45 +16,45 @@
   <div class="card-offer-infos">
     <div class="card-offer-text">
       <div class="d-flex justify-content-between">
-        <h1><%= offer.title[0..17] %>...</h2>
+        <h1 class="me-5"><%= offer.title[0..50] %>...</h2>
         <%if offer.category == 'Bicycle'%>
           <div class="d-flex offer-category">
             <i class="fa-solid fa-bicycle"></i>
-
+            <p class="ms-2"><%= offer.category %></p>
           </div>
         <% elsif offer.category == 'Skateboard' %>
           <div class="d-flex offer-category">
             <iconify-icon icon="ic:outline-skateboarding" ></iconify-icon>
-
+            <p class="ms-2"><%= offer.category %></p>
           </div>
         <% elsif offer.category == 'Scooter' %>
           <div class="d-flex offer-category">
             <iconify-icon icon="mdi:scooter"></iconify-icon></i>
-
+            <p class="ms-2"><%= offer.category %></p>
           </div>
         <% else %>
           <div class="d-flex offer-category">
             <i class="fa-solid fa-person-skating"></i>
-
+            <p class="ms-2"><%= offer.category %></p>
           </div>
         <% end %>
       </div>
 
-      <p class="mt-2"><%= offer.description[0..80] %>...</p>
+      <p class="my-3"><%= offer.description[0..200] %>...</p>
 
       <div class="features d-flex">
         <%if offer.electric == true %>
-          <p class="feature my-2 me-3"><i class="fa-solid fa-bolt"></i> Electric</p>
+          <p class="feature my-1 me-3"><i class="fa-solid fa-bolt"></i> Electric</p>
         <% end %>
 
         <% if offer.safety_equipment == true %>
-          <p class="feature my-2 me-3"><i class="fa-solid fa-helmet-safety"></i> Helmet</p>
+          <p class="feature my-1 me-3"><i class="fa-solid fa-helmet-safety"></i> Helmet</p>
         <% end %>
 
         <% if offer.optional == 'Padlock' %>
-          <p class="feature my-2 me-3"><i class="fa-solid fa-lock"></i> Padlock</p>
+          <p class="feature my-1 me-3"><i class="fa-solid fa-lock"></i> Padlock</p>
         <% elsif offer.optional == 'Backseat' %>
-          <p class="feature my-2 me-3"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat</p>
+          <p class="feature my-1 me-3"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat</p>
         <% end %>
       </div>
 
