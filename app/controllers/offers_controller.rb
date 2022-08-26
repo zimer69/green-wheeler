@@ -7,10 +7,12 @@ class OffersController < ApplicationController
 
     # home page search for location
     if params[:address].present?
-      @offers = @offers.search_by_address(params[:address])
-
+      @offers = @offers.near(params[:address],10)
+      if @offers.empty?
+        @close_offers_exist = false
+        @offers = policy_scope(Offer).where.not(user: current_user)
+      end
     else
-      @address_presence = false
       @offers = @offers.where.not(user: current_user)
     end
 
@@ -24,7 +26,7 @@ class OffersController < ApplicationController
     @offers = @offers.search_by_optional('Padlock') if params[:padlock].present?
     @offers = @offers.search_by_optional('Backseat') if params[:backseat].present?
 
-
+    # map for offers
     @markers = @offers.geocoded.map do |offer|
       {
         lat: offer.latitude,

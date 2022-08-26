@@ -1,37 +1,45 @@
 <header class="offers-index container px-5 pt-5 pb-4">
-  <h1 class="mb-4">Find your ride</h1>
-  <%= form_with url: offers_path, method: :get, class: "d-flex search-input index-search" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find the right wheels for you"%>
-    <%= submit_tag "Search", class: "btn btn-green btn-offers" %>
-  <div class="d-flex mt-3">
-    <div class="checkbox ms-1 me-3">
-      <%= check_box_tag :safety_equipment %>
-      <p>Safety Equipment</p>
-    </div>
-    <div class="checkbox me-3">
-      <%= check_box_tag :padlock %>
-      <p>Padlock</p>
-    </div>
-    <div class="checkbox mx-3">
-      <%= check_box_tag :electric %>
-      <p>Electric</p>
-    </div>
-    <div class="checkbox mx-3">
-      <%= check_box_tag :backseat %>
-      <p>Backseat</p>
-    </div>
+  <div class="row" >
+    <h1 class="mb-4">Find your ride</h1>
+    <%= form_with url: offers_path, method: :get, class: "d-flex search-input index-search" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find the right wheels for you"%>
+      <%= submit_tag "Search", class: "btn btn-green btn-offers" %>
+  </div>
+  <div class="row" >
+    <div class="d-flex mt-3">
+      <div class="checkbox ms-1 me-3">
+        <%= check_box_tag :safety_equipment %>
+        <p>Safety Equipment</p>
+      </div>
+      <div class="checkbox me-3">
+        <%= check_box_tag :padlock %>
+        <p>Padlock</p>
+      </div>
+      <div class="checkbox mx-3">
+        <%= check_box_tag :electric %>
+        <p>Electric</p>
+      </div>
+      <div class="checkbox mx-3">
+        <%= check_box_tag :backseat %>
+        <p>Backseat</p>
+      </div>
+  </div>
     <%= hidden_field_tag :address, params[:address]%>
   <% end %>
   </div>
 </header>
 
 <main class="container px-5">
-<%if @address_presece == false %>
-  <p>There are no offers </p>
-<%end%>
+
+  <%if @close_offers_exist == false %>
+  <div class="alert alert-secondary mt-2 mb-0 ms-4" id="location-message">
+    There are no offers near this location. Here are some other options for you:
+  </div>
+  <%end%>
+
   <div class="row mt-3 ">
     <% @offers.each do |offer| %>
       <div class="col-sm-12 col-lg-6 col-xl-4 my-3">
