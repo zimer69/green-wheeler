@@ -85,6 +85,18 @@
 
   </section>
 
+<% if @offer.user == current_user %>
+  <section id="edit" class="d-flex justify-content-center align-items-center">
+    <%= link_to 'Edit Offer', edit_offer_path(@offer), class: "btn btn-md btn-green b-radius mt-4 px-2 mx-2" %>
+    <%= link_to  offer_path(@offer),
+                class: "delete-icon mt-4 mx-2",
+                data: {turbo_method: :delete,
+                turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-solid fa-trash"></i>
+    <% end %>
+  </section>
+<% end %>
+
 <% unless @offer.user == current_user %>
   <section id="bookings" class="background-green my-5">
     <div class="offer-info container p-5">

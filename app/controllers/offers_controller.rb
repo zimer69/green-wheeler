@@ -17,7 +17,6 @@ class OffersController < ApplicationController
     end
 
     # offers page search for specific offer
-    sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
     @offers = @offers.search_by_title_and_description(params[:query]) if params[:query].present?
 
     # filtering the checkboxes
@@ -68,8 +67,7 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offers = policy_scope(Offer)
-    authorize @offers
+    authorize @offer
   end
 
   def update
@@ -86,7 +84,7 @@ class OffersController < ApplicationController
     authorize @offer
 
     @offer.destroy
-    redirect_to offers_path, notice: "Offer was successfully destroyed."
+    redirect_to user_path(current_user), status: :see_other, notice: "Offer was successfully destroyed."
   end
 
   private
