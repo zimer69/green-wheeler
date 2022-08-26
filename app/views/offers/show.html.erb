@@ -25,19 +25,17 @@
       <div>
         <div class="d-flex">
         <%if @offer.electric == true %>
-          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
-        <% else %>
-          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric</p>
         <% end %>
 
         <% if @offer.optional == 'Padlock' %>
-          <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock</p>
         <% elsif @offer.optional == 'Backseat' %>
-          <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+          <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat</p>
         <% end %>
 
         <% if @offer.safety_equipment == true %>
-          <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet</p>
         <% end %>
         </div>
         <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @offer.rating %></p>
@@ -53,11 +51,14 @@
         <% else %>
           <p class="category-icon mb-0"><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
         <% end %>
-        <p class="rating m-0">Only <strong class="category-icon">$<%= @offer.price %></strong> /day</p>
+        <p class="rating m-0"><strong class="category-icon">$<%= @offer.price %></strong> /day</p>
       </div>
     </div>
 
     <p class='my-4'><%= @offer.description %></p>
+
+    <p><strong>Pick it up at:</strong> <%= @offer.address %></p>
+
   </section>
 
   <section id="bookings" class="background-green my-5">
