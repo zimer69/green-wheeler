@@ -6,7 +6,6 @@
       class: "form-control",
       placeholder: "Find the right wheels for you"%>
     <%= submit_tag "Search", class: "btn btn-green btn-offers" %>
-  <% end %>
   <div class="d-flex mt-3">
     <div class="checkbox ms-1 me-3">
       <%= check_box_tag :safety_equipment %>
@@ -24,10 +23,15 @@
       <%= check_box_tag :backseat %>
       <p>Backseat</p>
     </div>
+    <%= hidden_field_tag :address, params[:address]%>
+  <% end %>
   </div>
 </header>
 
 <main class="container px-5">
+<%if @address_presece == false %>
+  <p>There are no offers </p>
+<%end%>
   <div class="row mt-3 ">
     <% @offers.each do |offer| %>
       <div class="col-sm-12 col-lg-6 col-xl-4 my-3">
