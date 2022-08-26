@@ -9,6 +9,7 @@
             class: "d-none"},
             wrapper_html: {data: {controller: "address-autocomplete",
             address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+
     <%=f.input :electric %>
     <%=f.input :safety_equipment %>
     <%= f.input :optional, :collection => %w[None Padlock Backseat], required: true %>
