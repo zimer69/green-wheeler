@@ -46,3 +46,13 @@
     box-shadow: 0px 0px 0px 3px #5CB25B;
   }
 }
+
+.delete-icon {
+  font-size: 30px;
+  color: #6c0303;
+  padding: 0px;
+  margin: 0px;
+  &:hover {
+    color: #990303;
+  }
+}
