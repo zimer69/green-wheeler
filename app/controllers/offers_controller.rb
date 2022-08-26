@@ -67,8 +67,7 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offers = policy_scope(Offer)
-    authorize @offers
+    authorize @offer
   end
 
   def update
