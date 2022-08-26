@@ -6,23 +6,24 @@ class OffersController < ApplicationController
 
     # home page search for location
     if params[:address].present?
-      offers = policy_scope(Offer).search_by_address(params[:address])
-      @offers = offers
+      @offers = policy_scope(Offer).search_by_address(params[:address])
+
     else
-      @offers = policy_scope(Offer)
+      @offers = policy_scope(Offer).where.not(user: current_user)
     end
 
     # filtering the checkboxes
     non_valid_offers = []
-    if params[:electric].present? == false
-      non_valid_offers << @offers.search_by_electric(true)
-    end
+    non_valid_offers << @offers.search_by_electric(true) unless params[:electric].present?
+    non_valid_offers << @offers.search_by_safety_equipment(true) unless params[:safety_equipment].present?
+    non_valid_offers << @offers.search_by_optional('Padlock') unless params[:padlock].present?
+    non_valid_offers << @offers.search_by_optional('Backseat') unless params[:backseat].present?
     # offers page search for specific offer
     sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
     if params[:query].present?
-      @offers = @offers.search_by_title_and_description(params[:query]) - non_valid_offers
+      @offers = policy_scope(Offer).search_by_address(params[:address]).search_by_title_and_description(params[:query])
     else
-      @offers = @offers
+      @offers = policy_scope(Offer).search_by_address(params[:address])
     end
 
     @markers = @offers.geocoded.map do |offer|
@@ -39,6 +40,7 @@ class OffersController < ApplicationController
     authorize @offer
     @booking = Booking.new
     authorize @booking
+    @review = Review.new
   end
 
   def my_offers

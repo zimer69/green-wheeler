@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show edit update destroy]
+  before_action :set_booking, only: %i[show edit update destroy accept decline]
   before_action :set_booking_offer, only: %i[new create]
 
   def index
@@ -8,6 +8,22 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+  end
+
+  def accept
+    if @booking.accepted!
+      redirect_to @booking, notice: 'booking accepted'
+    else
+      redirect_to @booking, notice: 'booking could not be accepted - please try again'
+    end
+  end
+
+  def reject
+    if @booking.rejected!
+      redirect_to @booking, notice: 'booking rejected'
+    else
+      redirect_to @booking, notice: 'booking could not be rejected - please try again'
+    end
   end
 
   def create

@@ -2,6 +2,8 @@ class Offer < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   has_many_attached :photos
+  has_many :bookings
+  has_many :reviews, dependent: :destroy
 
   belongs_to :user
 
@@ -35,17 +37,17 @@ class Offer < ApplicationRecord
                   }
 
   pg_search_scope :search_by_electric,
-                  against: %i[electric],
+                  against: [:electric],
                   using: {
                     tsearch: { prefix: true }
                   }
   pg_search_scope :search_by_optional,
-                  against: %i[optional],
+                  against: [:optional],
                   using: {
                     tsearch: { prefix: true }
                   }
   pg_search_scope :search_by_safety_equipment,
-                  against: %i[safety_equipment],
+                  against: [:safety_equipment],
                   using: {
                     tsearch: { prefix: true }
                   }
