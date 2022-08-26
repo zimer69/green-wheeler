@@ -3,29 +3,30 @@ class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
+    @offers = policy_scope(Offer)
+
     # home page search for location
     if params[:address].present?
-      @offers = policy_scope(Offer).search_by_address(params[:address])
-
+      @offers = @offers.near(params[:address],10)
+      if @offers.empty?
+        @close_offers_exist = false
+        @offers = policy_scope(Offer).where.not(user: current_user)
+      end
     else
-      @offers = policy_scope(Offer).where.not(user: current_user)
+      @offers = @offers.where.not(user: current_user)
     end
-
-    # filtering the checkboxes
-      # non_valid_offers = []
-      # non_valid_offers << @offers.search_by_electric(true) unless params[:electric].present?
-      # non_valid_offers << @offers.search_by_safety_equipment(true) unless params[:safety_equipment].present?
-      # non_valid_offers << @offers.search_by_optional('Padlock') unless params[:padlock].present?
-      # non_valid_offers << @offers.search_by_optional('Backseat') unless params[:backseat].present?
 
     # offers page search for specific offer
     sql_query = "@offers.title @@ :query OR @offers.description @@ :query"
-    if params[:query].present?
-      @offers = policy_scope(Offer).search_by_title_and_description(params[:query])
-    else
-      @offers = policy_scope(Offer)
-    end
+    @offers = @offers.search_by_title_and_description(params[:query]) if params[:query].present?
 
+    # filtering the checkboxes
+    @offers = @offers.search_by_electric(true) if params[:electric].present?
+    @offers = @offers.search_by_safety_equipment(true) if params[:safety_equipment].present?
+    @offers = @offers.search_by_optional('Padlock') if params[:padlock].present?
+    @offers = @offers.search_by_optional('Backseat') if params[:backseat].present?
+
+    # map for offers
     @markers = @offers.geocoded.map do |offer|
       {
         lat: offer.latitude,
