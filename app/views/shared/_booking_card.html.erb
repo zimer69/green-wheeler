@@ -1,0 +1,67 @@
+<div class="card-offer">
+  <% if booking.offer.photos.empty? %>
+    <% case booking.offer.category %>
+      <% when 'Bicycle'%>
+      <%= image_tag 'https://images.unsplash.com/uploads/14122621859313b34d52b/37e28531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80' %>
+      <% when 'Skateboard'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
+      <% when 'Rollerblades'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1583832292569-7092d6d90873?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1204&q=80' %>
+      <% when 'Scooter'%>
+        <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
+    <% end %>
+  <% else %>
+    <%= cl_image_tag offer.photos.first.key, crop: :fill %>
+  <% end %>
+  <div class="card-offer-infos">
+    <div class="card-offer-text">
+      <div class="d-flex justify-content-between">
+        <h1><%= booking.offer.title[0..17] %>...</h2>
+        <%if booking.offer.category == 'Bicycle'%>
+          <div class="d-flex offer-category">
+            <i class="fa-solid fa-bicycle"></i>
+
+          </div>
+        <% elsif booking.offer.category == 'Skateboard' %>
+          <div class="d-flex offer-category">
+            <iconify-icon icon="ic:outline-skateboarding" ></iconify-icon>
+
+          </div>
+        <% elsif booking.offer.category == 'Scooter' %>
+          <div class="d-flex offer-category">
+            <iconify-icon icon="mdi:scooter"></iconify-icon></i>
+
+          </div>
+        <% else %>
+          <div class="d-flex offer-category">
+            <i class="fa-solid fa-person-skating"></i>
+
+          </div>
+        <% end %>
+      </div>
+
+      <p class="mt-2"><%= booking.offer.description[0..80] %>...</p>
+
+      <div class="features d-flex">
+        <%if booking.offer.electric == true %>
+          <p class="feature my-2 me-3"><i class="fa-solid fa-bolt"></i> Electric</p>
+        <% end %>
+
+        <% if booking.offer.safety_equipment == true %>
+          <p class="feature my-2 me-3"><i class="fa-solid fa-helmet-safety"></i> Helmet</p>
+        <% end %>
+
+        <% if booking.offer.optional == 'Padlock' %>
+          <p class="feature my-2 me-3"><i class="fa-solid fa-lock"></i> Padlock</p>
+        <% elsif booking.offer.optional == 'Backseat' %>
+          <p class="feature my-2 me-3"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat</p>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-footer mb-3">
+    <h2 class="card-offer-pricing">$<%= booking.offer.price %><span id="per-day">/day</span></h2>
+    <h2 id="offer-rating"><%= booking.offer.rating %> <i class="fa-solid fa-star"></i></h2>
+  </div>
+</div>

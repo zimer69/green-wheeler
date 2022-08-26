@@ -61,6 +61,7 @@
 
   </section>
 
+<% unless @offer.user == current_user %>
   <section id="bookings" class="background-green my-5">
     <div class="offer-info container p-5">
       <h3 class="text-center mb-5">Book this offer!</h3>
@@ -88,5 +89,5 @@
       <% end %>
     </div>
   </section>
-
+<% end %>
 </main>
