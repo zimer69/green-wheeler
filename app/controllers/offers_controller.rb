@@ -18,6 +18,7 @@ class OffersController < ApplicationController
     end
 
     # offers page search for specific offer
+    # fix pull request
     @offers = @offers.search_by_title_and_description(params[:query]) if params[:query].present?
 
     # filtering the checkboxes
