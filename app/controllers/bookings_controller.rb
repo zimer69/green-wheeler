@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  def reject
+  def decline
     if @booking.rejected!
       redirect_to @booking, notice: 'booking rejected'
     else

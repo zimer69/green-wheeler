@@ -1,10 +1,11 @@
 .banner {
-  background-image: url(https://images.unsplash.com/photo-1472709171579-139831cdf19e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80),
-    url(https://images.unsplash.com/photo-1605021132832-3d59e5ce90f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80);
+  // https://images.unsplash.com/photo-1472709171579-139831cdf19e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+                    url(https://images.unsplash.com/photo-1545614374-740a1a109a4a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
   background-size: cover;
-  background-position: right center, left top;
+  background-position: center;
   background-repeat: no-repeat, repeat;
-  padding: 150px;
+  padding: 150px 0;
 
   h1 {
     color: aliceblue;
@@ -20,17 +21,8 @@
   p {
     color: aliceblue;
   }
-}
 
-.btn-flat {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #670bff;
-  transition: background 0.3s ease;
-}
-
-.btn-flat:hover {
-  background: #4d04c4;
-  color: white;
+  .container {
+    max-width: 600px;
+  }
 }

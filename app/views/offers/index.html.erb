@@ -1,14 +1,17 @@
-<main class="container">
+<header class="container px-5 pt-5 pb-4">
+  <h1 class="mb-4">Find your ride</h1>
+  <%= form_with url: offers_path, method: :get, class: "d-flex search-input index-search" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find an Offer"%>
+    <%= submit_tag "Search", class: "btn btn-green btn-offers" %>
+  <% end %>
+</header>
+<main class="container px-5">
   <div class="row mt-3">
-    <%= form_with url: offers_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find an Offer"%>
-      <%= submit_tag "Search", class: "btn btn-flat" %>
-    <% end %>
     <% @offers.each do |offer| %>
-      <div class="col-sm col-md-4 my-3">
+      <div class="col-sm-12 col-lg-6 col-xl-4 my-3">
         <%= link_to offer_path(offer), class: "text-decoration-none" do %>
           <%= render 'shared/card', offer: offer %>
         <% end %>

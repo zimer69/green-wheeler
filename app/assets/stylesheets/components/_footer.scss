@@ -1,28 +1,29 @@
-.containerfooter {
-  background: #bebab3;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 200px;
-  padding: 0px 50px;
-  color: #0f9015;
+#footer {
+  background: #343434;
   width: 100%;
-  display: flex;
-}
-.footer-links {
-  display: flex;
-  align-items: center;
-}
-.footer-links a {
-  color: black;
-  opacity: 0.15;
-  text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
-}
-.footer-links a:hover {
-  opacity: 1;
-}
-.footer .fa-heart {
-  color: #D23333;
+
+  p {
+    color: #90e194;
+    opacity: 0.5;
+  }
+
+  a {
+    color: #90e194;
+    opacity: 0.5;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 0px 10px;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      color: #90e194;
+      opacity: 0.8;
+      scale: 1.2;
+    }
+  }
+
+  .footer-info {
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }

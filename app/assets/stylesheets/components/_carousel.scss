@@ -1,0 +1,16 @@
+$itemGrow: 1.2;
+$duration: 250ms;
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  opacity: 0;
+  transition: all .5s ease-in-out;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  &:hover {
+    .carousel-control-next-icon, .carousel-control-prev-icon {
+      filter: invert(1) grayscale(100);
+      opacity: 1;
+    }
+  }
+}

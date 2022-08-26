@@ -3,6 +3,7 @@
     max-width: 800px;
     height: auto;
     margin-bottom: 1rem;
+    border-radius: 10px;
   }
 }
 
@@ -16,5 +17,33 @@
 
   .rating {
     font-size: 20px;
+  }
+}
+
+#bookings {
+  .container {
+    max-width: 800px;
+  }
+}
+
+#reviews {
+  border: 1px solid #dcdcdc;
+}
+
+.background-green {
+  background-color: #5cb25bc4;
+  color: white;
+
+  h1, h2, h3, h4 {
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 22px;
+    margin-top: 16px;
+  }
+
+  .container {
+    max-width: 1200px;
   }
 }
