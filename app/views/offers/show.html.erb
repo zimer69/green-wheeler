@@ -15,10 +15,34 @@
             <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
         <% end %>
       <% else %>
-        <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
+        <%# <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= cl_image_tag @offer.photos.first.key, crop: :limit %>
+            </div>
+            <% @offer.photos[1..-1].each do |photo| %>
+              <div class="carousel-item">
+                <%= cl_image_tag photo.key, crop: :limit %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       <% end %>
     </div>
   </div>
+
+
+
+
 
   <section class="offer-info container">
     <div class="d-flex justify-content-between">

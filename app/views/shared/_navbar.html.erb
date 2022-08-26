@@ -27,8 +27,6 @@
             <%= image_tag "https://cdn-icons-png.flaticon.com/512/924/924915.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to 'My Panel', user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My Offers", my_offers_path, class: "dropdown-item" %>
-              <%= link_to "My Bookings", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
