@@ -1,6 +1,6 @@
 <div class="card-product b-radius my-3">
-  <% if bookings_as_owner.offer.photos.empty? %>
-    <% case bookings_as_owner.offer.category %>
+  <% if booking.offer.photos.empty? %>
+    <% case booking.offer.category %>
       <% when 'Bicycle'%>
       <%= image_tag 'https://images.unsplash.com/uploads/14122621859313b34d52b/37e28531?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80' %>
       <% when 'Skateboard'%>
@@ -11,21 +11,21 @@
         <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
     <% end %>
   <% else %>
-    <%= cl_image_tag booking_as_owner.offer.photos.first.key, crop: :fill %>
+    <%= cl_image_tag offer.photos.first.key, crop: :fill %>
   <% end %>
   <div class="card-product-infos">
-    <h2>Offer #<%= booking.offer.id %> <%= booking_as_owner.offer.category %></h2>
-    <p><strong><%= "#{booking_as_owner.user.first_name} #{booking_as_owner.user.last_name}" %></strong> wants to book your <%= booking_as_owner.offer.category %> from <%= booking_as_owner.start_date.strftime('%d %b %Y') %> to <%= booking_as_owner.end_date.strftime('%d %b %Y') %>.</p>
-    <% if booking_as_owner.status == 'pending' %>
+    <h2>Offer #<%= booking.offer.id %> <%= booking.offer.category %></h2>
+    <p><strong><%= "#{booking.user.first_name} #{booking.user.last_name}" %></strong> wants to book your <%= booking.offer.category %> from <%= booking.start_date.strftime('%d %b %Y') %> to <%= booking.end_date.strftime('%d %b %Y') %>.</p>
+    <% if booking.status == 'pending' %>
       <div class="d-flex justify-content-end">
-        <%= link_to accept_booking_path(booking_as_owner) do %>
+        <%= link_to accept_booking_path(booking) do %>
           <i class="fa-solid fa-circle-check accept-booking mx-2"></i>
         <% end %>
-        <%= link_to decline_booking_path(booking_as_owner) do %>
+        <%= link_to decline_booking_path(booking) do %>
           <i class="fa-solid fa-x decline-booking"></i>
         <% end %>
       </div>
-    <% elsif booking_as_owner.status == 'accepted' %>
+    <% elsif booking.status == 'accepted' %>
       <div class="booking-accepted d-flex justify-content-start align-items-end">
         <i class="fa-solid fa-check me-1"></i>
         <p>Booking accepted</p>
