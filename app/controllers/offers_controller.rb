@@ -7,7 +7,7 @@ class OffersController < ApplicationController
 
     # home page search for location
     if params[:address].present?
-      @offers = @offers.near(params[:address],10)
+      @offers = @offers.search_by_address(params[:address])
       if @offers.empty?
         @close_offers_exist = false
         @offers = policy_scope(Offer).where.not(user: current_user)
