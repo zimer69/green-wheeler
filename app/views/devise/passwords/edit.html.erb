@@ -1,27 +1,31 @@
-<h2>Change your password</h2>
+<main class="container my-5 p-5">
+  <div class="form-card devise-form background-green b-radius p-5 pb-4">
+    <h2 class="mb-4">Change your password</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
 
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
+      <%= f.input :reset_password_token, as: :hidden, input_html: { class: "border-green b-radius" }git  %>
+      <%= f.full_error :reset_password_token %>
 
-  <div class="form-inputs">
-    <%= f.input :password,
-                label: "New password",
-                required: true,
-                autofocus: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                label: "Confirm your new password",
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <div class="form-inputs">
+        <%= f.input :password,
+                    label: "New password",
+                    required: true,
+                    autofocus: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { class: "border-green b-radius", autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    label: "Confirm your new password",
+                    required: true,
+                    input_html: { class: "border-green b-radius", autocomplete: "new-password" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Change my password", class: "btn btn-lg btn-outline-light b-radius w-100 my-4" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</main>

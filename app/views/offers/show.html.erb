@@ -15,32 +15,54 @@
             <%= image_tag 'https://images.unsplash.com/photo-1591122519484-70428711810d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' %>
         <% end %>
       <% else %>
-        <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
+        <%# <%= cl_image_tag @offer.photos.first.key, crop: :fill %>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <%= cl_image_tag @offer.photos.first.key, crop: :limit %>
+            </div>
+            <% @offer.photos[1..-1].each do |photo| %>
+              <div class="carousel-item">
+                <%= cl_image_tag photo.key, crop: :limit %>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       <% end %>
     </div>
   </div>
+
+
+
+
 
   <section class="offer-info container">
     <div class="d-flex justify-content-between">
       <div>
         <div class="d-flex">
         <%if @offer.electric == true %>
-          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✓</p>
-        <% else %>
-          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric ✕</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-bolt"></i> Electric</p>
         <% end %>
 
         <% if @offer.optional == 'Padlock' %>
-          <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock ✓</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-lock"></i> Padlock</p>
         <% elsif @offer.optional == 'Backseat' %>
-          <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat ✓</p>
+          <p class="me-3 my-1"><iconify-icon icon="ic:sharp-airline-seat-recline-normal"></iconify-icon></i> Backseat</p>
         <% end %>
 
         <% if @offer.safety_equipment == true %>
-          <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet ✓</p>
+          <p class="me-3 my-1"><i class="fa-solid fa-helmet-safety"></i> Helmet</p>
         <% end %>
         </div>
-        <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @offer.rating %></p>
+        <p class="rating mt-2"><i class="fa-solid fa-star"></i> <%= @average %></p>
       </div>
 
       <div class="text-end">
@@ -53,13 +75,17 @@
         <% else %>
           <p class="category-icon mb-0"><i class="fa-solid fa-person-skating"></i> <%= @offer.category %></p>
         <% end %>
-        <p class="rating m-0">Only <strong class="category-icon">$<%= @offer.price %></strong> /day</p>
+        <p class="rating m-0"><strong class="category-icon">$<%= @offer.price %></strong> /day</p>
       </div>
     </div>
 
     <p class='my-4'><%= @offer.description %></p>
+
+    <p><strong>Pick it up at:</strong> <%= @offer.address %></p>
+
   </section>
 
+<% unless @offer.user == current_user %>
   <section id="bookings" class="background-green my-5">
     <div class="offer-info container p-5">
       <h3 class="text-center mb-5">Book this offer!</h3>
@@ -87,5 +113,5 @@
       <% end %>
     </div>
   </section>
-
+<% end %>
 </main>
